@@ -376,5 +376,14 @@
     <!-- Which timestamps -->
     <string name="pref_title_mms_use_sent_timestamp">정확한 타임스탬프</string>
     <string name="pref_summary_mms_use_sent_timestamp">받은 날짜가 아닌 보낸 날짜를 기준으로 표시</string>
+    
+    <!-- Change Vibrate pattern/method for message notification -->
+    <string name="pref_title_mms_notification_vibrate_settings">진동 설정</string>
+    <string name="pref_title_mms_notification_vibrate_pattern">진동 패턴</string>
+    <string name="pref_summary_mms_notification_vibrate_pattern">진동 패턴 변경</string>
+    <string name="pref_title_mms_notification_vibrate_call">통화 중 진동</string>
+    <string name="pref_summary_mms_notification_vibrate_call">통화 중에 진동 허용</string>
+    <string name="pref_title_mms_notification_vibrate_custom">직접 진동 패턴 만들기</string>
+    <string name="pref_text_mms_notification_vibrate_custom">1000분의 1초 단위로 진동 꺼짐/켜짐 : 꺼짐시간, 켜짐시간, 꺼짐시간, 켜짐시간, ...</string>
    
 </resources>
