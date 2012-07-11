@@ -95,6 +95,7 @@
                         android:entries="@array/prefEntries_vibrateWhen"
                         android:entryValues="@array/prefValues_vibrateWhen"
                         android:dialogTitle="@string/prefDialogTitle_vibrateWhen" />
+
     <com.android.mms.preferences.CustomVibrateListPreference
                         android:key="pref_key_mms_notification_vibrate_pattern"
                         android:dependency="pref_key_vibrateWhen"
@@ -154,6 +155,15 @@
                         android:summary="@string/pref_summary_input_type"
                         android:entries="@array/pref_entries_input_type"
                         android:entryValues="@array/pref_values_input_type" />
+
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_key_notification_hidesendername"
+                        android:summary="@string/pref_summary_hidesendername"
+                        android:title="@string/pref_title_hidesendername" />                   
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_key_notification_hidemessage"
+                        android:summary="@string/pref_summary_hidemessage"
+                        android:title="@string/pref_title_hidemessage" /> 
 
     <CheckBoxPreference android:key="pref_key_sms_EnableMultipartSMS"
                         android:title="@string/pref_title_sms_EnableMultipartSMS"
