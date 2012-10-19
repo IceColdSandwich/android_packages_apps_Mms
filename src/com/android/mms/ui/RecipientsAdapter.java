@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.DataUsageFeedback;
+import android.provider.ContactsContract.Data;
 import android.telephony.PhoneNumberUtils;
 import android.text.Annotation;
 import android.text.Spannable;
@@ -38,6 +39,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import com.android.mms.LogTag;
+import android.util.Log;
 
 /**
  * This adapter is used to filter contacts on both name and number.
@@ -51,6 +56,9 @@ public class RecipientsAdapter extends ResourceCursorAdapter {
     public static final int NAME_INDEX       = 5;
     public static final int NORMALIZED_NUMBER = 6;
 
+    private boolean mOnlyMobile;
+    private boolean mEnablenickname;
+
     private static final String[] PROJECTION_PHONE = {
         Phone._ID,                  // 0
         Phone.CONTACT_ID,           // 1
@@ -61,12 +69,17 @@ public class RecipientsAdapter extends ResourceCursorAdapter {
         Phone.NORMALIZED_NUMBER,    // 6
     };
 
+    private static final String[] PROJECTION_NICK = {
+        Phone.DISPLAY_NAME,         // 5
+    };
+
     private static final String SORT_ORDER = Contacts.TIMES_CONTACTED + " DESC,"
             + Contacts.DISPLAY_NAME + "," + Phone.TYPE;
 
     private final Context mContext;
     private final ContentResolver mContentResolver;
     private final String mDefaultCountryIso;
+    private static final String TAG = LogTag.TAG;
 
     public RecipientsAdapter(Context context) {
         // Note that the RecipientsAdapter doesn't support auto-requeries. If we
@@ -77,6 +90,9 @@ public class RecipientsAdapter extends ResourceCursorAdapter {
         super(context, R.layout.recipient_filter_item, null, false /* no auto-requery */);
         mContext = context;
         mContentResolver = context.getContentResolver();
+	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        mOnlyMobile = prefs.getBoolean(MessagingPreferenceActivity.ONLY_MOBILE_NUMBERS, false);
+	mEnablenickname = prefs.getBoolean(MessagingPreferenceActivity.ENABLE_NICKNAME, false);
         mDefaultCountryIso = MmsApp.getApplication().getCurrentCountryIso();
     }
 
@@ -191,13 +207,46 @@ public class RecipientsAdapter extends ResourceCursorAdapter {
                 Phone.TYPE,
                 Phone.TYPE_MMS);
          */
+	String selection = null;
+        if (mOnlyMobile) {
+            selection = String.format("%s=%s OR %s=%s OR %s=%s OR %s=0",
+                Phone.TYPE,
+                Phone.TYPE_MOBILE,
+                Phone.TYPE,
+                Phone.TYPE_WORK_MOBILE,
+                Phone.TYPE,
+                Phone.TYPE_MMS,
+                Phone.TYPE);
+        }
         Cursor phoneCursor =
             mContentResolver.query(uri,
                     PROJECTION_PHONE,
-                    null, //selection,
+                    selection, //selection,
                     null,
                     null);
-
+	if(cons!=null)
+	{
+		if(mEnablenickname==true)
+		{
+			String nselection = "LOWER("+Data.DATA1+")='"+cons.toLowerCase()+"' AND mimetype_id=3";		
+			Cursor nickCursor =
+			    mContentResolver.query(Data.CONTENT_URI,
+				    PROJECTION_NICK,
+				    nselection,
+				    null,
+				    null);
+			while (nickCursor.moveToNext()) {
+				Uri uri2 = Phone.CONTENT_FILTER_URI.buildUpon()
+			        .appendPath(nickCursor.getString(0))
+			        .appendQueryParameter(DataUsageFeedback.USAGE_TYPE,
+		                DataUsageFeedback.USAGE_TYPE_SHORT_TEXT)
+			        .build();
+				Cursor selCursor =
+				mContentResolver.query(uri2,PROJECTION_PHONE,selection,null,null);
+				phoneCursor = new MergeCursor(new Cursor[] { phoneCursor, selCursor });
+			}
+		}
+	}
         if (phone.length() > 0) {
             Object[] result = new Object[7];
             result[0] = Integer.valueOf(-1);                    // ID

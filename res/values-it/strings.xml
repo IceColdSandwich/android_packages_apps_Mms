@@ -378,5 +378,30 @@
     <string name="pref_summary_sms_EnableMultipartSMS">"Trasforma lunghi messaggi di testo in MMS"</string>
     <string name="pref_title_sms_SmsToMmsTextThreshold">"Contatore SMS"</string>
     <string name="pref_summary_sms_SmsToMmsTextThreshold">"<xliff:g id="COUNT">%1$s</xliff:g> messaggi prima della conversione in MMS"</string>
-
+    <!-- Only mobile numbers -->
+    <string name="pref_title_only_mobile_numbers">Solo numeri mobili</string>
+    <string name="pref_summary_only_mobile_numbers">Attiva per poter visualizzare solo numeri di rete mobile nel campo del destinatario</string>
+    <!-- Enable Nickname -->
+    <string name="pref_title_enable_nickname">Abilita nickname</string>
+    <string name="pref_summary_enable_nickname">Abilita la selezione dei contatti tramite nickname nel campo del destinatario</string>
+    <!-- Turn on screen for message notification -->
+    <string name="pref_notification_screen_settings">Impostazioni Schermo</string>
+    <string name="pref_title_mms_notification_screen_on">Accendi lo schermo</string>
+    <string name="pref_summary_mms_notification_screen_on">Abilita accensione schermo</string>
+    <string name="pref_title_notification_screenTimeout">"Timeout schermo"</string>
+    <string name="pref_summary_notification_screenTimeout">"Regola il tempo che deve trascorrere prima che lo schermo si spenga automaticamente"</string>
+    <!-- Settings item for boolean option to show the sender's name -->
+    <string name="pref_title_hidesendername">Nascondi nome mittente</string>
+    <!-- Settings item description for boolean full message setting -->
+    <string name="pref_summary_hidesendername">Nascondi il nome del mittente nelle notifiche.</string>
+    <!-- Settings item for boolean option to show the full datetime -->
+    <string name="pref_title_hidemessage">Nascondi testo messaggio</string>
+    <!-- Settings item description for boolean full message setting -->
+    <string name="pref_summary_hidemessage">Nasconde il testo del messaggio nelle notifiche. Viene visualizato "Nuovo Messaggio" invece.</string>
+    <!-- The actual strings that will display if privacy is enabled -->
+    <string name="hidden_sender"> </string>
+    <string name="hidden_message_body">Nuovo Messaggio</string>
+    <!-- Toggle setting for always show character counter -->
+    <string name="pref_title_show_counter_always">Mostra contatore caratteri</string>
+    <string name="pref_summary_show_counter_always">Mostra sempre il contatore dei caratteri durante la composizone di un messaggio</string>
 </resources>

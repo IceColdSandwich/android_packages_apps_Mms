@@ -80,6 +80,12 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     public static final String INPUT_TYPE               = "pref_key_mms_input_type";
     public static final String DISPLAY_HIDESENDERNAME   = "pref_key_notification_hidesendername";
     public static final String DISPLAY_HIDEMESSAGE      = "pref_key_notification_hidemessage";
+    public static final String ONLY_MOBILE_NUMBERS      = "pref_key_mms_only_mobile_numbers";
+    public static final String NOTIFICATION_SCREEN_ON = "pref_key_mms_notification_screen_on";
+    public static final String NOTIFICATION_SCREEN_TIMEOUT = "pref_key_notification_screenTimeout";
+    public static final String NOTIFICATION_SCREEN_TIMEOUT_VALUE = "pref_key_notification_screenTimeout_value";
+    public static final String ENABLE_NICKNAME = "pref_key_enable_nickname";
+    
 
     // Menu entries
     private static final int MENU_RESTORE_DEFAULTS    = 1;
@@ -103,6 +109,7 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     private static final int CONFIRM_CLEAR_SEARCH_HISTORY_DIALOG = 3;
     private CharSequence[] mVibrateEntries;
     private CharSequence[] mVibrateValues;
+    private ListPreference mScreenTimeout;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -117,6 +124,7 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         mMmsReadReportPref = findPreference("pref_key_mms_read_reports");
         mMmsLimitPref = findPreference("pref_key_mms_delete_limit");
         mClearHistoryPref = findPreference("pref_key_mms_clear_history");
+	mScreenTimeout = (ListPreference) findPreference(NOTIFICATION_SCREEN_TIMEOUT);
         mEnableNotificationsPref = (CheckBoxPreference) findPreference(NOTIFICATION_ENABLED);
         mVibrateWhenPref = (ListPreference) findPreference(NOTIFICATION_VIBRATE_WHEN);
         mManageTemplate = findPreference(MANAGE_TEMPLATES);
@@ -223,6 +231,19 @@ public class MessagingPreferenceActivity extends PreferenceActivity
                 int value = Integer.parseInt((String) newValue);
                 sharedPreferences.edit().putInt(GESTURE_SENSITIVITY_VALUE, value).commit();
                 mGestureSensitivity.setSummary(String.valueOf(value));
+                return true;
+            }
+        });
+
+	String ScreenTimeout = String.valueOf(sharedPreferences.getInt(NOTIFICATION_SCREEN_TIMEOUT_VALUE, 5));
+
+        mScreenTimeout.setValue(ScreenTimeout);
+        mScreenTimeout.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                int value = Integer.parseInt((String) newValue);
+                sharedPreferences.edit().putInt(NOTIFICATION_SCREEN_TIMEOUT_VALUE, value).commit();
                 return true;
             }
         });

@@ -130,4 +130,34 @@
         <item>80</item><!-- InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE constant  -->
     </string-array>
 
+   <string-array name="prefEntries_screenTimeout">
+      <item>1 sec</item>
+      <item>2 secs</item>
+      <item>3 secs</item>
+      <item>4 secs</item>
+      <item>5 secs</item>
+      <item>6 secs</item>
+      <item>7 secs</item>
+      <item>8 secs</item>
+      <item>9 secs</item>
+      <item>10 secs</item>
+      <item>15 secs</item>
+      <item>20 secs</item>
+    </string-array>
+
+    <string-array name="prefValues_screenTimeout" translatable="false">
+      <item>1</item>
+      <item>2</item>
+      <item>3</item>
+      <item>4</item>
+      <item>5</item>
+      <item>6</item>
+      <item>7</item>
+      <item>8</item>
+      <item>9</item>
+      <item>10</item>
+      <item>15</item>
+      <item>20</item>
+    </string-array>
+
 </resources>
