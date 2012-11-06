@@ -678,7 +678,6 @@ public class ConversationList extends ListActivity implements DraftCache.OnDraft
                 if (mNeedToMarkAsSeen) {
                     mNeedToMarkAsSeen = false;
                     Conversation.markAllConversationsAsSeen(getApplicationContext());
-
                     // Delete any obsolete threads. Obsolete threads are threads that aren't
                     // referenced by at least one message in the pdu or sms tables. We only call
                     // this on the first query (because of mNeedToMarkAsSeen).

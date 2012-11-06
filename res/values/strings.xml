@@ -833,4 +833,20 @@
     <string name="pref_summary_sms_EnableMultipartSMS">"Transform long text messages into MMS"</string>
     <string name="pref_title_sms_SmsToMmsTextThreshold">"SMS count"</string>
     <string name="pref_summary_sms_SmsToMmsTextThreshold">"<xliff:g id="COUNT">%1$s</xliff:g> messages before MMS conversion"</string>
+    <!-- Only mobile numbers -->
+    <string name="pref_title_only_mobile_numbers">Only mobile numbers</string>
+    <string name="pref_summary_only_mobile_numbers">Enable to only show mobile numbers in recipient field</string>
+    <!-- Enable Nickname -->
+    <string name="pref_title_enable_nickname">Enable nickname</string>
+    <string name="pref_summary_enable_nickname">Enable to select contacts using nickname in recipient field</string>
+    <!-- Turn on screen for message notification -->
+    <string name="pref_notification_screen_settings">Screen settings</string>
+    <string name="pref_title_mms_notification_screen_on">Turn on Screen</string>
+    <string name="pref_summary_mms_notification_screen_on">Allow to turn on the screen</string>
+    <string name="pref_title_notification_screenTimeout">Screen timeout</string>
+    <!-- Sound & display settings screen, setting option summary to change screen timeout -->
+    <string name="pref_summary_notification_screenTimeout">Adjust the delay before the screen automatically turns off</string>
+    <!-- Toggle setting for always show character counter -->
+    <string name="pref_title_show_counter_always">Always show character counter</string>
+    <string name="pref_summary_show_counter_always">Always show the character counter when composing messages</string>
 </resources>

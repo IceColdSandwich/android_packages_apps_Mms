@@ -625,6 +625,12 @@ public class ComposeMessageActivity extends Activity
                  remainingInCurrentMessage <= CHARS_REMAINING_BEFORE_COUNTER_SHOWN)) {
             showCounter = true;
         }
+	
+	// Show the counter if the pref_key_show_counter_always preference is TRUE
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(prefs.getBoolean("pref_key_show_counter_always",false)== true){
+            showCounter = true;
+        }
 
         showSmsOrMmsSendButton(workingMessage.requiresMms());
 
